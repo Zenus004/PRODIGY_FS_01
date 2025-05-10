@@ -1,212 +1,261 @@
 :host {
-    display: block;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    font-family: 'Roboto', Arial, sans-serif;
-  }
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #334155;
+}
 
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.dashboard-header h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70%;
+  width: 4px;
+  background: linear-gradient(to bottom, #3b82f6, #0ea5e9);
+  border-radius: 2px;
+}
+
+.logout-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logout-button::before {
+  content: '↩';
+  font-size: 1rem;
+}
+
+.logout-button:hover {
+  background-color: #f8fafc;
+  color: #334155;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.user-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.user-info {
+  padding: 2rem;
+}
+
+.user-greeting {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+}
+
+.user-greeting::before {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.user-detail {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.user-detail:hover {
+  background-color: #f1f5f9;
+  transform: translateX(5px);
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #64748b;
+  width: 100px;
+}
+
+.detail-value {
+  font-weight: 500;
+  color: #334155;
+  flex-grow: 1;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-admin {
+  background-color: #eff6ff;
+  color: #3b82f6;
+  border: 1px solid #bfdbfe;
+}
+
+.role-user {
+  background-color: #f0fdf4;
+  color: #22c55e;
+  border: 1px solid #bbf7d0;
+}
+
+.role-manager {
+  background-color: #fef9c3;
+  color: #ca8a04;
+  border: 1px solid #fef08a;
+}
+
+.admin-users-section {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.admin-users-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+}
+
+.admin-users-section h3::before {
+  margin-right: 0.5rem;
+}
+
+.user-entry {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+  border-left: 4px solid #e2e8f0;
+}
+
+.user-entry:hover {
+  background: #f8fafc;
+  border-left-color: #3b82f6;
+  transform: translateX(5px);
+}
+
+.user-entry p {
+  margin: 0.5rem 0;
+}
+
+.user-entry hr {
+  display: none;
+}
+
+.user-entry:last-child hr {
+  display: none;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(59, 130, 246, 0.2);
+  border-left-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
   .dashboard-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
   }
 
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  h2 {
-    margin: 0;
-    color: #1e293b;
-    font-size: 2rem;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-  }
-
-  h2::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    border-radius: 3px;
-  }
-
-  .logout-button {
-    background: transparent;
-    color: #64748b;
-    border: 2px solid #64748b;
-    border-radius: 8px;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .logout-button:hover {
-    background-color: #f1f5f9;
-    color: #475569;
-    transform: translateY(-2px);
-  }
-
-  .logout-button:active {
-    transform: translateY(0);
-  }
-
-  .user-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .user-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .user-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  }
-
-  .user-info {
-    margin-bottom: 1.5rem;
-  }
-
-  .user-greeting {
+  .dashboard-header h2 {
     font-size: 1.5rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 1.5rem;
   }
 
   .user-detail {
-    display: flex;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px dashed #e2e8f0;
-  }
-
-  .user-detail:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
+    flex-direction: column;
   }
 
   .detail-label {
-    width: 100px;
-    font-weight: 500;
-    color: #64748b;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .admin-users-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
   }
 
-  .detail-value {
-    color: #334155;
-    font-weight: 500;
+  .admin-users-section h3 {
+    grid-column: 1 / -1;
   }
-
-  .role-badge {
-    display: inline-block;
-    padding: 0.3rem 0.75rem;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .role-admin {
-    background-color: #f0fdf4;
-    color: #16a34a;
-    border: 1px solid #dcfce7;
-  }
-
-  .role-user {
-    background-color: #f0f9ff;
-    color: #0284c7;
-    border: 1px solid #e0f2fe;
-  }
-
-  .role-moderator {
-    background-color: #fef9c3;
-    color: #ca8a04;
-    border: 1px solid #fef3c7;
-  }
-
-  .dashboard-footer {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #64748b;
-  }
-
-  @media (max-width: 768px) {
-    .dashboard-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .logout-button {
-      align-self: flex-end;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .dashboard-container {
-      padding: 1rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-    }
-
-    .user-card {
-      padding: 1.5rem;
-    }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .user-greeting {
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  .user-detail {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  .user-detail:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  .user-detail:nth-child(3) {
-    animation-delay: 0.4s;
-  }
+}

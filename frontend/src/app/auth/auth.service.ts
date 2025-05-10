@@ -35,4 +35,13 @@ export class AuthService {
     const payload = token.split('.')[1];
     return JSON.parse(atob(payload));
   }
+
+  getAllUsers() {
+  const token = this.getToken();
+  return this.http.get<any[]>('http://localhost:8080/api/user/all', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
 }

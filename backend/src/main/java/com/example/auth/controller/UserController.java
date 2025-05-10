@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,5 +25,16 @@ public class UserController {
         String username = jwtService.extractUsername(token);
         Optional<User> user = userRepository.findByUsername(username);
         return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers(@RequestHeader("Authorization") String token) {
+        token = token.replace("Bearer ", "");
+        String role = jwtService.extractRole(token);
+        if (!"ADMIN".equalsIgnoreCase(role)) {
+            return ResponseEntity.status(403).body("Access Denied: Only admins can view all users.");
+        }
+        List<User> users = userRepository.findAll();
+        return ResponseEntity.ok(users);
     }
 }
